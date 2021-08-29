@@ -28,7 +28,5 @@ namespace Business.Concrete
         {
             return _colorDal.Get(c=>c.ColorId==colorId);
         }
-
-       
     }
 }

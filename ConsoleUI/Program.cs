@@ -25,6 +25,7 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.Id);
             }
+
         }
 
         private static void CarTest()
@@ -35,10 +36,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.CarName + " /***/ " + car.BrandName + " /***/ " + car.ColorName + " /***/ " + car.DailyPrice);
             }
-
-            
-           
-
 
         }
     }
