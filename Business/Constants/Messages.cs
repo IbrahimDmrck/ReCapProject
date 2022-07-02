@@ -40,5 +40,9 @@ namespace Business.Constants
         public static string RentalUpdated = ("Kiralama bilgisi güncellendi");
         public static string RentalsListed = ("Kiralama bilgileri Listelendi");
         public static string CarIsOnRent = ("Araç şuan bir başkası tarafından kiralanmıştır");
+
+        public  static string ImgUploadSuccessful="Resim başarıyla eklendi";
+        public static string ImgRemoveSuccessful="Resim başarıyla silindi";
+        public static string ImgUpadateSuccessful="Resim başarıyla güncellendi";
     }
 }
