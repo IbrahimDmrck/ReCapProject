@@ -12,6 +12,7 @@ using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -45,6 +46,11 @@ namespace Business.Concrete
         public IDataResult<Customer> GetById(int id)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.Id == id));
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetailDto()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetailDto());
         }
 
         public IResult Update(Customer customer)
