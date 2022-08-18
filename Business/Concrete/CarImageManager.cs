@@ -28,14 +28,21 @@ namespace Business.Concrete
 
         public IResult Add(IFormFile file, CarImage carImage)
         {
-            IResult result = BusinessRules.Run();
+            IResult result = BusinessRules.Run(CheckIfCarImageLimit(carImage.CarId));
 
+            if (result!=null)
+            {
+                return result;
+            }
+            carImage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagesPath);
+            carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.ImgUploadSuccessful);
         }
 
         public IResult Delete(CarImage carImage)
         {
+            _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.ImgRemoveSuccessful);
         }
@@ -62,6 +69,7 @@ namespace Business.Concrete
 
         public IResult Update(IFormFile file, CarImage carImage)
         {
+            carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.ImgUpadateSuccessful);
         }

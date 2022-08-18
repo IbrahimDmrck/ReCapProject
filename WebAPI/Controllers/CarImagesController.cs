@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CarImagesController : Controller
     {
         ICarImageService _carImageService;
