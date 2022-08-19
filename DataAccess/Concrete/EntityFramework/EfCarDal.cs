@@ -29,6 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  BrandName = b.BrandName,
                                  CarName = c.CarName,
                                  ColorName = co.ColorName,
+                                 TypeOfVehicle = c.TypeOfVehicle,
                                  DailyPrice = c.DailyPrice,
                                  ModelYear = c.ModelYear,
                                  Description = c.Description,
@@ -55,7 +56,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  BrandName=b.BrandName,
                                  ColorName=co.ColorName,
                                  DailyPrice=c.DailyPrice,
-                                 Description=c.Description,
+                                 TypeOfVehicle = c.TypeOfVehicle,
+                                 Description =c.Description,
                                  ModelYear=c.ModelYear,
                                  CarImages=(from i in context.CarImages where i.CarId==c.Id select i).ToList()
 
