@@ -17,10 +17,10 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-       
+
         public CarManager(ICarDal carDal)
         {
-            
+
             _carDal = carDal;
         }
 
@@ -30,14 +30,14 @@ namespace Business.Concrete
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
-           
+
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
         }
 
         public IResult Delete(Car car)
-        { 
+        {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
@@ -45,24 +45,24 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
         [CacheAspect]
         [PerformanceAspect(5)]
-        public IDataResult<List<Car>> GetById(int id)
+        public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.Id == id));
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == id));
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p=>p.BrandId==brandId));
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetail(p => p.BrandId == brandId));
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarsByColorId(int colorId)
         {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.ColorId == colorId));
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetail(p => p.ColorId == colorId));
         }
 
 
@@ -75,9 +75,9 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<List<CarDetailsDto>> GetCarDetails(int carId)
+        public IDataResult<CarDetailsDto> GetCarDetails(int carId)
         {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(x => x.CarId == carId), Messages.CarDetailEnlarged);
+            return new SuccessDataResult<CarDetailsDto>(_carDal.GetCarDetails(x => x.Id == carId), Messages.CarDetailEnlarged);
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetail()

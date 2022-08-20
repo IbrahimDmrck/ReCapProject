@@ -62,12 +62,14 @@ namespace DataAccess.Concrete.InMemory
             productToUpdate.Description = entity.Description;
         }
 
-        public List<CarDetailsDto> GetCarDetails(Expression<Func<CarDetailsDto, bool>> filter = null)
+      
+
+        public CarDetailsDto GetCarDetails(Expression<Func<Car, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<CarDetailsDto> GetCarDetail(Expression<Func<CarDetailsDto, bool>> filter = null)
+        public List<CarDetailsDto> GetCarDetail(Expression<Func<Car, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
