@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Core.DataAccess;
@@ -11,6 +12,6 @@ namespace DataAccess.Abstract
 {
     public interface IRentalDal : IEntityRepository<Rental>
     {
-        List<RentalDetailDto> GetRentalDetails();
+        List<RentalDetailDto> GetDetails(Expression<Func<Rental, bool>> filter = null);
     }
 }

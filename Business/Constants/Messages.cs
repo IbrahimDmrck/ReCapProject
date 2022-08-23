@@ -61,5 +61,9 @@ namespace Business.Constants
         internal static string Listed;
         internal static string ThisCardIsAlreadyRegisteredForThisCustomer;
         internal static string PaymentSuccessful;
+        internal static string ReturnDateCannotBeEarlierThanRentDate;
+        internal static string RentalDateCannotBeBeforeToday;
+        internal static string ReturnDateCannotBeLeftBlankAsThisCarWasAlsoRentedAtALaterDate;
+        internal static string ThisCarIsAlreadyRentedInSelectedDateRange;
     }
 }

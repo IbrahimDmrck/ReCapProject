@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getRentalDetail")]
-        public IActionResult GetRentalDetail()
+        public IActionResult GetRDetail()
         {
-            var result = _rentalService.GetRentalDetails();
+            var result = _rentalService.GetDetails();
 
             if (result.Success)
             {
@@ -52,6 +52,15 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpPost("rulesForAdding")]
+        public IActionResult RulesForAdding(Rental rental)
+        {
+            var result = _rentalService.RulesForAdding(rental);
+            if (!result.Success) return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPost("add")]

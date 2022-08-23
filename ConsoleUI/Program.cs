@@ -18,25 +18,25 @@ namespace ConsoleUI
             //CarTest();
             //ColorTest();
             //BrandTest();
-            RentalAddTest();
+            //RentalAddTest();
 
 
 
         }
 
-        private static void RentalAddTest()
-        {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental{CarId = 1,CustomerId = 2,RentDate = new DateTime(2021, 09, 1, 01, 0, 00), ReturnDate = new DateTime(2021, 09, 17, 20, 30, 00) });
-            if (result.Success == true)
-            {
-                Console.WriteLine(result.Message);
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+        //private static void RentalAddTest()
+        //{
+        //    RentalManager rentalManager = new RentalManager(new EfRentalDal());
+        //    var result = rentalManager.Add(new Rental{CarId = 1,CustomerId = 2,RentDate = new DateTime(2021, 09, 1, 01, 0, 00), ReturnDate = new DateTime(2021, 09, 17, 20, 30, 00) });
+        //    if (result.Success == true)
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
 
 
         //private static void CarTest()
