@@ -55,5 +55,11 @@ namespace Business.Constants
         public static string AccessTokenCreated="Token oluşturuldu";
         public static string AuthorizationDenied="Yetkiniz yok";
         public static string Geted;
+        internal static string PaymentInformationSuccessfullySaved;
+        internal static string Deleted;
+        internal static string Updated;
+        internal static string Listed;
+        internal static string ThisCardIsAlreadyRegisteredForThisCustomer;
+        internal static string PaymentSuccessful;
     }
 }
