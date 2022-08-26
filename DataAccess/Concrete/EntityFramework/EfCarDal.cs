@@ -15,53 +15,51 @@ namespace DataAccess.Concrete.EntityFramework
 
     public class EfCarDal : EfEntityRepositoryBase<Car, RentACarContext>, ICarDal
     {
-        public List<CarDetailsDto> GetCarDetail(Expression<Func<Car, bool>> filter = null)
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
             using (RentACarContext context = new RentACarContext())
             {
-                var result = from car in filter == null ? context.Cars : context.Cars.Where(filter)
-                             join color in context.Colors
-                             on car.ColorId equals color.ColorId
-                             join brand in context.Brands
-                             on car.BrandId equals brand.BrandId
-                             select new CarDetailsDto
-                             {
-                                 CarId = car.Id,
-                                 BrandName = brand.BrandName,
-                                 ColorName = color.ColorName,
-                                 CarName = car.CarName,
-                                 ModelYear = car.ModelYear,
-                                 DailyPrice = car.DailyPrice,
-                                 Description = car.Description,
-                                 TypeOfVehicle = car.TypeOfVehicle,
-                                 CarImages = context.CarImages.Where(ci => ci.CarId == car.Id).ToList()
-                             };
-                return result.ToList();
-            }
-        }
 
-        public CarDetailsDto GetCarDetails(Expression<Func<Car, bool>> filter)
-        {
-            using (RentACarContext context = new RentACarContext())
-            {
-                var result = from car in context.Cars.Where(filter)
-                             join color in context.Colors
-                             on car.ColorId equals color.ColorId
-                             join brand in context.Brands
-                             on car.BrandId equals brand.BrandId
-                             select new CarDetailsDto
+                var result = from c in context.Cars
+                             join b in context.Brands
+                                 on c.BrandId equals b.Id
+                             join co in context.Colors
+                                 on c.ColorId equals co.Id
+                             select new CarDetailDto
                              {
-                                 CarId = car.Id,
-                                 BrandName = brand.BrandName,
-                                 ColorName = color.ColorName,
-                                 CarName = car.CarName,
-                                 ModelYear = car.ModelYear,
-                                 DailyPrice = car.DailyPrice,
-                                 Description = car.Description,
-                                 TypeOfVehicle = car.TypeOfVehicle,
-                                 CarImages = context.CarImages.Where(ci => ci.CarId == car.Id).ToList()
+                                 Id = c.Id,
+                                 BrandId = c.BrandId,
+                                 BrandName = b.Name,
+                                 ColorId = c.ColorId,
+                                 ColorName = co.Name,
+                                 MinFindexScore = c.MinFindexScore,
+                                 ModelName = c.ModelName,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 ModelYear = c.ModelYear,
+                                 CarImages = ((from ci in context.CarImages
+                                               where (c.Id == ci.CarId)
+                                               select new CarImage
+                                               {
+                                                   Id = ci.Id,
+                                                   CarId = ci.CarId,
+                                                   Date = ci.Date,
+                                                   ImagePath = ci.ImagePath
+                                               }).ToList()).Count == 0
+                                                    ? new List<CarImage> { new CarImage { Id = -1, CarId = c.Id, Date = DateTime.Now, ImagePath = "/images/default.jpg" } }
+                                                    : (from ci in context.CarImages
+                                                       where (c.Id == ci.CarId)
+                                                       select new CarImage
+                                                       {
+                                                           Id = ci.Id,
+                                                           CarId = ci.CarId,
+                                                           Date = ci.Date,
+                                                           ImagePath = ci.ImagePath
+                                                       }).ToList()
                              };
-                return result.SingleOrDefault();
+                return filter == null
+                ? result.ToList()
+                : result.Where(filter).ToList();
             }
         }
     }

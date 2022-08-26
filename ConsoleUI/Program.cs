@@ -57,24 +57,24 @@ namespace ConsoleUI
         //    }
         //}
 
-        private static void ColorTest()
-        {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
-            {
-                Console.WriteLine(color.ColorId + " <---> " + color.ColorName);
-            }
+        //private static void ColorTest()
+        //{
+        //    ColorManager colorManager = new ColorManager(new EfColorDal());
+        //    foreach (var color in colorManager.GetAll())
+        //    {
+        //        Console.WriteLine(color.ColorId + " <---> " + color.ColorName);
+        //    }
             
-        }
+        //}
 
-        private static void BrandTest()
-        {
-            IBrandService brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll().Data)
-            {
-                Console.WriteLine(brand.BrandName);
-            }
-        }
+        //private static void BrandTest()
+        //{
+        //    IBrandService brandManager = new BrandManager(new EfBrandDal());
+        //    foreach (var brand in brandManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine(brand.BrandName);
+        //    }
+        //}
 
     }
 }

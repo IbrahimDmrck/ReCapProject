@@ -12,8 +12,10 @@ namespace Business.ValidationRules.FluentValidation
     {
         public ColorValidator()
         {
-            RuleFor(p => p.ColorName).NotEmpty().WithMessage("Araç rengi belirtilmek zorundadır");
-            RuleFor(p => p.ColorName).MinimumLength(3).WithMessage("renk ismi en az 3 karakter olmalı");
+            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.Name).NotNull();
+            RuleFor(c => c.Name).MinimumLength(2);
+            RuleFor(c => c.Name).MaximumLength(50);
         }
     }
 }

@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Entities.Models;
 
 namespace Business.Abstract
 {
     public interface IRentalService
     {
-        IResult Add(Rental rental);
-        IResult Delete(Rental rental);
-        IResult Update(Rental rental);
-        IDataResult<Rental> GetById(int id);
         IDataResult<List<Rental>> GetAll();
-        IDataResult<List<RentalDetailDto>> GetDetails();
-        IResult RulesForAdding(Rental rental);
+        IDataResult<Rental> GetRentalById(int rentalId);
+        IDataResult<bool> CheckIfCanCarBeRentedNow(int carId);
+        IDataResult<bool> CheckIfAnyRentalBetweenSelectedDates(int carId, DateTime rentDate, DateTime returnDate);
+        IDataResult<List<RentalDetailDto>> GetRentalsDetails();
+        IDataResult<List<RentalDetailDto>> GetRentalsByCustomerIdWithDetails(int customerId);
+        IResult Add(Rental rental);
+        IResult Delete(int rentalId);
+        IResult Update(Rental rental);
+        IDataResult<int> Rent(RentPaymentRequestModel rentPaymentRequest);
     }
 }

@@ -13,12 +13,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        IBrandService _brandService;
+        private readonly IBrandService _brandService;
 
         public BrandsController(IBrandService brandService)
         {
             _brandService = brandService;
         }
+
 
         [HttpGet("getall")]
         public IActionResult GetAll()
@@ -34,7 +35,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _brandService.GetById(id);
+            var result = _brandService.GetBrandById(id);
             if (result.Success)
             {
                 return Ok(result);

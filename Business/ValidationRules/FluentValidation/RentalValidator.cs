@@ -12,11 +12,17 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RentalValidator()
         {
-            RuleFor(p => p.CarId).NotEmpty().WithMessage("Kiralamak istediğiniz aracı seçin");
-            RuleFor(p => p.RentDate).NotEmpty().WithMessage("Kiralama başlangıç tarihini seçin");
-            RuleFor(p => p.ReturnDate).NotEmpty().WithMessage("Kiralama bitiş tarihini seçin");
-            RuleFor(P => P.CustomerId).NotEmpty().WithMessage("Bu aracı kim kiralıyor ?");
-            RuleFor(p => p.ReturnDate).Null().WithMessage("Araç şu anda kullnılıyor kiralanamaz");
+            RuleFor(r => r.CarId).NotEmpty();
+            RuleFor(r => r.CarId).NotNull();
+            RuleFor(r => r.CarId).GreaterThan(0);
+            RuleFor(r => r.CustomerId).NotEmpty();
+            RuleFor(r => r.CustomerId).NotNull();
+            RuleFor(r => r.CustomerId).GreaterThan(0);
+            RuleFor(r => r.RentDate).NotEmpty();
+            RuleFor(r => r.RentDate).NotNull();
+            RuleFor(r => r.ReturnDate).NotEmpty();
+            RuleFor(r => r.ReturnDate).NotNull();
+            RuleFor(r => r.RentDate).LessThan(r => r.ReturnDate);
         }
     }
 }

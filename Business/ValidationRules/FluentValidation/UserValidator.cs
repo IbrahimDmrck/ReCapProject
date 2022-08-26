@@ -13,12 +13,19 @@ namespace Business.ValidationRules.FluentValidation
     {
         public UserValidator()
         {
-            RuleFor(p => p.FirstName).NotEmpty().WithMessage("Adınızı girin");
-            RuleFor(p => p.LastName).NotEmpty().WithMessage("Soyadınızı girin");
-            RuleFor(p => p.Email).EmailAddress().NotEmpty().WithMessage("E-posta adresinizi giriniz");
-            //RuleFor(p => p.Password).NotEmpty().WithMessage("Şifrenizi giriniz");
-            //RuleFor(p => p.Password).MinimumLength(8).WithMessage("Şifre en az 8 karakter olabilir");
-            //RuleFor(p => p.Password).MaximumLength(21).WithMessage("Şifre en fazla 21 karakter olabilir");
+            RuleFor(u => u.FirstName).NotEmpty();
+            RuleFor(u => u.FirstName).NotNull();
+            RuleFor(u => u.FirstName).MinimumLength(3);
+            RuleFor(u => u.FirstName).MaximumLength(50);
+
+            RuleFor(u => u.LastName).NotEmpty();
+            RuleFor(u => u.LastName).NotNull();
+            RuleFor(u => u.LastName).MinimumLength(3);
+            RuleFor(u => u.LastName).MaximumLength(50);
+
+            RuleFor(u => u.Email).NotEmpty();
+            RuleFor(u => u.Email).NotNull();
+            RuleFor(u => u.Email).EmailAddress();
 
         }
     }
