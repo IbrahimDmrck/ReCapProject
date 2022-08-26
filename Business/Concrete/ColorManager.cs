@@ -27,7 +27,7 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-      //  [SecuredOperation("admin,color.all,color.list")]
+        //[SecuredOperation("admin,color.all,color.list")]
         [CacheAspect(10)]
         public IDataResult<Color> GetColorById(int id)
         {

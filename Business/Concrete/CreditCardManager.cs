@@ -24,7 +24,7 @@ namespace Business.Concrete
             _creditCardDal = creditCardDal;
         }
 
-      //  [SecuredOperation("admin,creditCard.all,creditCard.get,customer")]
+        //[SecuredOperation("admin,creditCard.all,creditCard.get,customer")]
         public IDataResult<CreditCard> Get(string cardNumber, string expireYear, string expireMonth, string cvc, string cardHolderFullName)
         {
             var creditCard = GetCreditCardByCardInfo(cardNumber, expireYear, expireMonth, cvc, cardHolderFullName);
@@ -46,7 +46,7 @@ namespace Business.Concrete
             return new ErrorDataResult<CreditCard>(null, Messages.CreditCardNotFound);
         }
 
-       // [SecuredOperation("admin,creditCard.all,creditCard.validate,customer")]
+        //[SecuredOperation("admin,creditCard.all,creditCard.validate,customer")]
         [ValidationAspect(typeof(CreditCardValidator))]
         public IResult Validate(CreditCard creditCard)
         {
@@ -59,7 +59,7 @@ namespace Business.Concrete
             return new ErrorResult(Messages.CreditCardNotValid);
         }
 
-      //  [SecuredOperation("admin,creditCard.all,creditCard.update,customer")]
+        //[SecuredOperation("admin,creditCard.all,creditCard.update,customer")]
         public IResult Update(CreditCard creditCard)
         {
             _creditCardDal.Update(creditCard);

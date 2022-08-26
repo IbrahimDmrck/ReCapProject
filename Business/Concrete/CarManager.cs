@@ -75,7 +75,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
-       [SecuredOperation("admin,car.all,car.delete")]
+        [SecuredOperation("admin,car.all,car.delete")]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
